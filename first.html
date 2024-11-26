@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Love Confession</title>
+    <style>
+        /* Enhanced styles for a romantic theme */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-image: url('images/another_bg.webp');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            color: #fff;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+        }
+
+        .popup {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+            position: relative;
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+        }
+
+        .popup h1 {
+            font-size: 28px;
+            margin-bottom: 15px;
+            color: #e91e63;
+        }
+
+        .popup p {
+            font-size: 18px;
+            margin-bottom: 20px;
+            line-height: 1.5;
+            color: #8c0ebe;
+        }
+
+        button {
+            margin-top: 10px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            padding: 12px 30px;
+            font-size: 18px;
+            font-weight: bold;
+            transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+        }
+
+        #yes-btn {
+            background: linear-gradient(135deg, #4CAF50, #81C784);
+            color: white;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        #yes-btn:hover {
+            background: linear-gradient(135deg, #45a049, #66bb6a);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        #no-btn {
+            background: linear-gradient(135deg, #f44336, #ef5350);
+            color: white;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        #no-btn:hover {
+            background: linear-gradient(135deg, #d32f2f, #e57373);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+        }
+      .heart {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 250px; /* Bigger heart */
+            height: 250px; /* Bigger heart */
+            background-color: #e91e63;
+            clip-path: polygon(50% 0%, 62% 39%, 100% 50%, 62% 61%, 50% 100%, 38% 61%, 0% 50%, 38% 39%);
+            transform: translate(-50%, -50%) scale(0);
+            animation: pop 1s ease-out forwards;
+        }
+
+        @keyframes pop {
+            0% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(0);
+            }
+            70% {
+                transform: translate(-50%, -50%) scale(1.5);
+            }
+            100% {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(2);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="popup">
+        <h1>💖 A Confession 💖</h1>
+        <p>Hi Shane! This is a confession :3 
+                    <br>
+        I have been admiring you for a while now, and I just can't keep it to myself anymore. Please don't feel pressured or feel like you have to reciprocate, i just want to tell you how I feel. Do you want to hear my confession? :3 </p>
+        <button id="yes-btn">Yes 🥰 </button>
+        <button id="no-btn">No 😫</button>
+    </div>
+
+    <!-- Audio elements for the sounds -->
+    <audio id="no-sound" src="sounds/duck.mp3" preload="auto"></audio>
+    <audio id="music-sound" src="sounds/sound.mp3" preload="auto" loop></audio>
+
+    <script>
+        const noBtn = document.getElementById('no-btn');
+        const yesBtn = document.getElementById('yes-btn');
+        const popup = document.querySelector('.popup');
+        const noSound = document.getElementById('no-sound');
+        const musicSound = document.getElementById('music-sound');
+
+        // Play music on page load
+        musicSound.play();
+
+        yesBtn.addEventListener('click', () => {
+            // Create the heart element
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            document.body.appendChild(heart);
+
+            // Remove the popup
+            popup.style.display = 'none';
+
+            // Wait for animation to finish before redirecting
+            setTimeout(() => {
+                window.location.href = 'confession.html'; // Replace with the desired page URL
+            }, 1000);
+        });
+
+        noBtn.addEventListener('click', () => {
+            // Play the sound
+            noSound.play();
+
+            const popupRect = popup.getBoundingClientRect();
+            const maxX = window.innerWidth - popupRect.left - noBtn.offsetWidth;
+            const maxY = window.innerHeight - popupRect.top - noBtn.offsetHeight;
+            const minX = -popupRect.left;
+            const minY = -popupRect.top;
+
+            const randomX = Math.random() * (maxX - minX) + minX;
+            const randomY = Math.random() * (maxY - minY) + minY;
+
+            noBtn.style.position = 'absolute';
+            noBtn.style.left = `${randomX}px`;
+            noBtn.style.top = `${randomY}px`;
+        });
+    </script>
+</body>
+</html>

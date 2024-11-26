@@ -1,0 +1,167 @@
+/* styles.css */
+
+:root {
+    --warmtone-paper-1-hex: #F2D7B6;
+    --warmtone-paper-2-hex: #faeee1;
+    --warmtone-tetsu-guro-black-hex: #261D15;
+    --warmtone-caramel-hex: #D9AC84;
+    --warmtone-sasparilla-hex: #594C45;
+    --warmtone-ponzu-brown-hex: #260101;
+
+    --rich-red-hex: #A93226;
+    --dusty-blue-hex: #6C7A89;
+}
+
+
+body {
+    font-family: 'Helvetica', sans-serif;
+    margin: 30px;
+    background-color: #e91e63; /* Light Pink */
+}
+
+.container {
+    display: grid;
+    grid-template-areas:
+    "header"
+    "content";
+}
+
+.deskbackground {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header {
+    grid-area: header;
+    background-color: teal;
+    color: white;
+}
+
+.content {
+    grid-area: content;
+    background-color: white;
+}
+
+#envelope {
+    position: absolute;
+    transform: translate(-50%, -50%) rotate(8deg);
+    top: 50%;
+    left: 50%;
+}
+
+.back {
+    position: relative;
+    width:250px;
+    height: 200px;
+    background-color: #ebd5b3;
+}
+
+#letter {
+    position: absolute;
+    width:230px;
+    height: 180px;
+    top:10px;
+    left:10px;
+    transition: .2s;
+}
+
+.stationarystyle {
+    box-shadow:
+            inset 0 0 0 3px var(--warmtone-paper-2-hex),
+            inset 0 0 0 5px var(--rich-red-hex),
+            inset 0 0 0 8px var(--warmtone-paper-2-hex),
+            inset 0 0 0 10px var(--rich-red-hex);
+    background-color: var(--warmtone-paper-2-hex);
+}
+
+
+.text {
+    font-size: 17px;
+    font-family: Apple Chancery, cursive;
+    margin-top:20px;
+    font-weight: bold;
+    margin: 10px;
+}
+
+.front {
+    position: absolute;
+    border-right: 130px solid #ebd5b3;
+    border-top: 100px solid transparent;
+    border-bottom: 100px solid transparent;
+    height:0;
+    width:0;
+    top:0;
+    left:120px;
+    z-index:3;
+}
+.front:before {
+    content:"";
+    position: absolute;
+    border-left: 130px solid #ebd5b3;
+    border-top: 100px solid transparent;
+    border-bottom: 100px solid transparent;
+    height:0;
+    width:0;
+    top:-100px;
+    left:-120px;
+}
+
+.front:after {
+    content:"";
+    position: absolute;
+    border-bottom: 105px solid #f5deb3;
+    border-left: 125px solid transparent;
+    border-right:125px solid transparent;
+    height:0;
+    width:0;
+    top:-5px;
+    left:-120px;
+}
+
+.top {
+    position: absolute;
+    border-top: 120px solid #FCF5E5;
+    border-left: 125px solid transparent;
+    border-right: 125px solid transparent;
+    height: 0;
+    width: 0;
+    top: 0;
+    transform-origin: top;
+    transition: .4s;
+}
+
+#envelope:hover {
+    transform: translate(-50%, -50%) rotate(0deg) scale(1.8);
+    transition: transform .5s ease-out;
+}
+#envelope:hover .top {
+    transform: rotateX(160deg);
+}
+
+#envelope:hover #letter {
+    transform:  translateY(-30px);
+    z-index: 2;
+    transition: transform 2s ease-in;
+}
+
+.hidden {
+    display: none;
+    transition: opacity 0.5s ease;
+}
+
+#hiddenDiv {
+    width: 90%;
+    z-index: 10;
+    padding: 30px;
+    top: 0;
+    position: sticky;
+    opacity: 1;
+}
+
+#closeLetter {
+    border: none;
+    background: none;
+    box-shadow: none;
+    padding: 0px;
+}
