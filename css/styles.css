@@ -1,5 +1,6 @@
 /* styles.css */
 
+
 :root {
     --warmtone-paper-1-hex: #F2D7B6;
     --warmtone-paper-2-hex: #faeee1;
@@ -13,11 +14,6 @@
 }
 
 
-body {
-    font-family: 'Helvetica', sans-serif;
-    margin: 30px;
-    background-color: #e91e63; /* Light Pink */
-}
 
 .container {
     display: grid;
